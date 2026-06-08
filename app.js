@@ -5,6 +5,7 @@ const salaryInput = document.querySelector("#salary-input");
 const message = document.querySelector("#message");
 const resultBody = document.querySelector("#result-body");
 const totalCell = document.querySelector("#total-cell");
+const summaryTotal = document.querySelector("#summary-total");
 const priorityHint = document.querySelector("#priority-hint");
 const denominationButtons = [...document.querySelectorAll(".denomination-button")];
 
@@ -31,22 +32,31 @@ function renderEmpty(messageText) {
     </tr>
   `;
   totalCell.textContent = formatCurrency(0);
+  summaryTotal.textContent = formatCurrency(0);
 }
 
 function renderResult(result) {
   resultBody.innerHTML = result.bills
-    .map(
-      (bill) => `
-        <tr class="${bill.denomination === preferredDenomination ? "priority-row" : ""}">
-          <td>${formatCurrency(bill.denomination)}</td>
-          <td>${bill.count} 張</td>
+    .map((bill) => {
+      const isPriority = bill.denomination === preferredDenomination;
+
+      return `
+        <tr class="${isPriority ? "priority-row" : ""}">
+          <td>
+            <span class="denomination-cell">
+              ${formatCurrency(bill.denomination)}
+              ${isPriority ? '<span class="priority-badge">優先</span>' : ""}
+            </span>
+          </td>
+          <td><span class="count-cell">${bill.count}</span> 張</td>
           <td>${formatCurrency(bill.subtotal)}</td>
         </tr>
-      `,
-    )
+      `;
+    })
     .join("");
 
   totalCell.textContent = formatCurrency(result.total);
+  summaryTotal.textContent = formatCurrency(result.total);
 }
 
 function updateSelectedDenomination(nextDenomination) {
