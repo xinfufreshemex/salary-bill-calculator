@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>員工薪水鈔票換算器</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="tool-panel" aria-labelledby="app-title">
+        <div class="tool-header">
+          <div>
+            <p class="eyebrow">Payroll Bill Calculator</p>
+            <h1 id="app-title">員工薪水鈔票換算器</h1>
+          </div>
+          <div class="denomination-group" aria-label="選擇優先發放面額">
+            <button
+              class="denomination-button is-selected"
+              type="button"
+              data-denomination="100000"
+              aria-pressed="true"
+            >
+              10萬
+            </button>
+            <button
+              class="denomination-button"
+              type="button"
+              data-denomination="50000"
+              aria-pressed="false"
+            >
+              5萬
+            </button>
+            <button
+              class="denomination-button"
+              type="button"
+              data-denomination="20000"
+              aria-pressed="false"
+            >
+              2萬
+            </button>
+            <button
+              class="denomination-button"
+              type="button"
+              data-denomination="10000"
+              aria-pressed="false"
+            >
+              1萬
+            </button>
+          </div>
+        </div>
+
+        <form class="salary-form" id="salary-form" novalidate>
+          <label for="salary-input">員工薪水</label>
+          <div class="input-row">
+            <input
+              id="salary-input"
+              name="salary"
+              type="number"
+              min="10000"
+              step="10000"
+              inputmode="numeric"
+              placeholder="例如：280000"
+              autocomplete="off"
+            />
+            <button class="calculate-button" type="submit">換算</button>
+          </div>
+          <p class="hint" id="priority-hint">目前優先發放：10萬元。請輸入 10000 元的倍數。</p>
+          <p class="message" id="message" role="alert"></p>
+        </form>
+
+        <section class="result-section" aria-label="換算結果">
+          <table>
+            <thead>
+              <tr>
+                <th>面額</th>
+                <th>張數</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+            <tbody id="result-body">
+              <tr class="empty-row">
+                <td colspan="3">輸入薪水後會顯示換算結果</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="2">合計</th>
+                <td id="total-cell">$0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
