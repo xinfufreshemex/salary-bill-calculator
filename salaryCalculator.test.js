@@ -40,6 +40,55 @@ test("uses the selected preferred denomination first", () => {
   });
 });
 
+test("subtracts manual bill counts and automatically fills with the remaining denominations", () => {
+  const result = calculateSalaryBills(3000000, {
+    preferredDenomination: 100000,
+    manualCounts: {
+      100000: 10,
+      20000: 30,
+    },
+  });
+
+  assert.equal(result.manualTotal, 1600000);
+  assert.equal(result.autoTotal, 1400000);
+  assert.equal(result.total, 3000000);
+  assert.equal(result.remaining, 0);
+  assert.deepEqual(result.bills, [
+    {
+      denomination: 100000,
+      manualCount: 10,
+      autoCount: 0,
+      count: 10,
+      subtotal: 1000000,
+      autoEnabled: false,
+    },
+    {
+      denomination: 50000,
+      manualCount: 0,
+      autoCount: 28,
+      count: 28,
+      subtotal: 1400000,
+      autoEnabled: true,
+    },
+    {
+      denomination: 20000,
+      manualCount: 30,
+      autoCount: 0,
+      count: 30,
+      subtotal: 600000,
+      autoEnabled: false,
+    },
+    {
+      denomination: 10000,
+      manualCount: 0,
+      autoCount: 0,
+      count: 0,
+      subtotal: 0,
+      autoEnabled: true,
+    },
+  ]);
+});
+
 test("rejects salaries below the minimum unit", () => {
   assert.throws(() => calculateSalaryBills(5000), /10000 元/);
 });
