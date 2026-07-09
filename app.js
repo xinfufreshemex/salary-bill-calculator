@@ -60,7 +60,9 @@ function renderResult(result) {
       const isAutoEnabled = bill.autoEnabled;
 
       return `
-        <tr class="${isPriority && isAutoEnabled ? "priority-row" : ""}">
+        <tr class="denom-row denom-${bill.denomination} ${
+          isPriority && isAutoEnabled ? "priority-row" : ""
+        }">
           <td>
             <span class="denomination-cell">
               ${formatCurrency(bill.denomination)}
