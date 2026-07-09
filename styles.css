@@ -526,27 +526,17 @@ td {
 
 th:nth-child(1),
 td:nth-child(1) {
-  width: 25%;
+  width: 34%;
 }
 
 th:nth-child(2),
 td:nth-child(2) {
-  width: 13%;
+  width: 28%;
 }
 
 th:nth-child(3),
 td:nth-child(3) {
-  width: 16%;
-}
-
-th:nth-child(4),
-td:nth-child(4) {
-  width: 17%;
-}
-
-th:nth-child(5),
-td:nth-child(5) {
-  width: 29%;
+  width: 38%;
 }
 
 th:first-child,
@@ -570,17 +560,18 @@ tbody tr:last-child td {
 }
 
 .count-cell {
-  font-size: 1.55rem;
+  color: var(--row-main, var(--ink));
+  font-size: 1.9rem;
   font-weight: 950;
 }
 
-tbody td:nth-child(3),
-tbody td:nth-child(4) {
-  font-size: 1.28rem;
+tbody td:nth-child(2) {
+  color: var(--row-main, var(--ink));
+  font-size: 1.35rem;
   font-weight: 950;
 }
 
-tbody td:nth-child(5) {
+tbody td:nth-child(3) {
   font-size: 1.18rem;
   font-weight: 900;
 }

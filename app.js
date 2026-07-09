@@ -42,7 +42,7 @@ function getManualCounts() {
 function renderEmpty(messageText) {
   resultBody.innerHTML = `
     <tr class="empty-row">
-      <td colspan="5">${messageText}</td>
+      <td colspan="3">${messageText}</td>
     </tr>
   `;
   totalCell.textContent = formatCurrency(0);
@@ -70,8 +70,6 @@ function renderResult(result) {
               ${isAutoEnabled ? '<span class="auto-badge">自動</span>' : ""}
             </span>
           </td>
-          <td>${bill.manualCount ?? 0} 張</td>
-          <td>${bill.autoCount ?? bill.count} 張</td>
           <td><span class="count-cell">${bill.count}</span> 張</td>
           <td>${formatCurrency(bill.subtotal)}</td>
         </tr>
